@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>920</x><y>120</y><w>210</w><h>200</h></coordinates><panel_attributes>Game
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>920</x><y>150</y><w>210</w><h>200</h></coordinates><panel_attributes>Game
 --
 &lt;&lt;+get, -set&gt;&gt; Players: Player[2]
 &lt;&lt;+get, +set&gt;&gt; CurrentPlayer: Player
@@ -7,11 +7,11 @@
 &lt;&lt;+get, -set&gt;&gt; Board: Coordinate[64]
 --
 + StartGame(): void
-- CreatePlayer(name: string): void
+- CreatePlayer(name: string): Player
 - GenerateBoard(): void
 + PrintWinner(player: Player): void
 + PrintDraw(): void
-+ AppendMove(move: Move): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>120</y><w>260</w><h>170</h></coordinates><panel_attributes>Player
++ AppendMove(move: Move): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>580</x><y>150</y><w>260</w><h>170</h></coordinates><panel_attributes>Player
 --
 &lt;&lt;+get, -set&gt;&gt; Name: string
 &lt;&lt;+get, -set&gt;&gt; Side: SideType
@@ -22,15 +22,15 @@
 + GiveUp(): void
 + SelectChecker(checker: Checker): void
 + EndMove(): void
-+ IsAvailableToMove(): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>530</y><w>320</w><h>110</h></coordinates><panel_attributes>Move
++ IsAvailableToMove(): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>560</y><w>350</w><h>110</h></coordinates><panel_attributes>Move
 --
 &lt;&lt;+get, -set&gt;&gt; Checker: Checker
 &lt;&lt;+get, -set&gt;&gt; FinalCoordinate: Coordinate
 --
-+ Move(checker: Checker, finalCoordinate: Coordinate)
++ Move(checker: Checker, finalCoordinate: Coordinate): void
 + IsValid(): bool
 + ApplyMove(): void
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>220</x><y>240</y><w>320</w><h>190</h></coordinates><panel_attributes>Checker
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>220</x><y>270</y><w>320</w><h>190</h></coordinates><panel_attributes>Checker
 --
 &lt;&lt;+get, -set&gt;&gt; Coordinate: Coordinate
 &lt;&lt;+get, -set&gt;&gt; Owner: Player
@@ -42,20 +42,20 @@
 + MakeLady(): void
 + Kill(): void
 + Move(coordinate: Coordinate): void
-+ DetectAvailableMoves(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>720</x><y>340</y><w>110</w><h>70</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
++ DetectAvailableMoves(): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>720</x><y>370</y><w>110</w><h>70</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
 SideType
 --
 Black
 White
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>490</y><w>110</w><h>70</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>520</y><w>110</w><h>70</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
 CheckerType
 --
 Lady
 Regular
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>250</y><w>180</w><h>100</h></coordinates><panel_attributes>&lt;&lt;struct&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>280</y><w>180</w><h>100</h></coordinates><panel_attributes>&lt;&lt;struct&gt;&gt;
 Coordinate
 --
 &lt;&lt;+get, -set&gt;&gt; X: int
 &lt;&lt;+get, -set&gt;&gt; Y: int
 --
-+ Coordinate(x: int, y: int): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>270</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>420</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>280</y><w>120</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;40;100;40;100;10</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>150</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>340</y><w>530</w><h>270</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>510;250;10;250;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>680</x><y>280</y><w>30</w><h>270</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;250;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>310</y><w>100</w><h>260</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;80;240;10;240</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>390</y><w>130</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>110;140;110;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>280</y><w>160</w><h>100</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;80;140;80;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>180</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>340</y><w>130</w><h>80</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;60;110;60</additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>140</y><w>220</w><h>120</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>200;10;10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>420</y><w>140</w><h>150</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;130;120;130</additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>340</y><w>570</w><h>300</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;280;550;280</additional_attributes></element><element><id>Relation</id><coordinates><x>900</x><y>310</y><w>170</w><h>320</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;300;150;300;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>10</x><y>310</y><w>1110</w><h>370</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>1090;10;1090;350;10;350;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>770</x><y>280</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element></diagram>
++ Coordinate(x: int, y: int): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>170</x><y>300</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>450</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>310</y><w>120</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;40;100;40;100;10</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>180</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>370</y><w>530</w><h>270</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>510;250;10;250;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>680</x><y>310</y><w>30</w><h>270</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;250;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>340</y><w>70</w><h>260</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;10;50;240;10;240</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>420</y><w>130</w><h>160</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>110;140;110;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>310</y><w>160</w><h>100</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;80;140;80;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>830</x><y>210</y><w>110</w><h>30</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;90;10</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>370</y><w>130</w><h>80</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;60;110;60</additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>170</y><w>220</w><h>120</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>200;10;10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>450</y><w>140</w><h>150</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;130;120;130</additional_attributes></element><element><id>Relation</id><coordinates><x>40</x><y>370</y><w>570</w><h>300</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;10;10;280;550;280</additional_attributes></element><element><id>Relation</id><coordinates><x>930</x><y>340</y><w>140</w><h>320</h></coordinates><panel_attributes>lt=&lt;.</panel_attributes><additional_attributes>10;300;120;300;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>10</x><y>340</y><w>1110</w><h>370</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>1090;10;1090;350;10;350;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>770</x><y>310</y><w>30</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;60</additional_attributes></element></diagram>
