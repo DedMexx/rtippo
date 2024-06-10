@@ -14,6 +14,11 @@ namespace Checkers.Classes.Game
 
         public Move(Checker checker, Coordinate finalCoordinate)
         {
+            if (checker == null)
+            {
+                throw new ArgumentNullException(nameof(checker), "Checker cannot be null!");
+            }
+
             Checker = checker;
             FinalCoordinate = finalCoordinate;
         }
@@ -21,13 +26,19 @@ namespace Checkers.Classes.Game
         // TODO: Implement IsValid checking
         public bool IsValid()
         {
-            return false;
+            throw new NotImplementedException();
         }
 
         public void ApplyMove()
         {
+            if (!IsValid())
+            {
+                // TODO: when not valid
+                throw new InvalidOperationException("Cannot apply invalid move!");
+            }
             Checker.Move(FinalCoordinate);
             // TODO: Implement appending a killed checkers
+            throw new NotImplementedException();
         }
     }
 }

@@ -21,12 +21,20 @@ namespace Checkers.Classes.Game
         public Game() 
         { 
            this.GenerateBoard();
+           this.CreatePlayer("Роман");
+           this.CreatePlayer("Иван");
+
 
         }
 
         private void CreatePlayer(string name) {
+            if (Players.All(p => p != null))
+            {
+                throw new InvalidOperationException("Maximum number of players reached!");
+            }
             Player player;
             bool isBlackPlayer = Players[0] != null;
+            int offset = isBlackPlayer ? 5 * 64 / 8 + 1 : 0;
 
             player = new Player(name, isBlackPlayer ? Enums.SideType.Black : Enums.SideType.White);
 
@@ -35,11 +43,13 @@ namespace Checkers.Classes.Game
             for (int i = 0; i < 12; i++)
             {
                 int coordinageId = i * 2;
-                if (isBlackPlayer)
-                    coordinageId += 5 / 8 * 64;
-                if (i >= 4 && i <= 8)
-                    coordinageId--;
-                Checkers[i + (isBlackPlayer ? 12 : 0)] = new Checker(Board[coordinageId], player);
+                coordinageId += offset;
+                if (i >= 4 && i < 8)
+                    if (isBlackPlayer)
+                        coordinageId--;
+                    else
+                        coordinageId++;
+                this.AppendChecker(new Checker(Board[coordinageId], player));
             }
         }
 
@@ -56,27 +66,45 @@ namespace Checkers.Classes.Game
         private void AppendPlayer(Player player)
         {
             if (player.Side == Enums.SideType.White)
+            {
+                if (Players[0] != null)
+                {
+                    throw new InvalidOperationException("White player slot already occupied!");
+                }
                 Players[0] = player;
+            }
             else
+            {
+                if (Players[1] != null)
+                {
+                    throw new InvalidOperationException("Black player slot already occupied!");
+                }
                 Players[1] = player;
+            }
         }
 
-        // TODO:
         private void AppendChecker(Checker checker)
         {
+            int freeSlotIndex = Array.IndexOf(Checkers, null);
 
+            if (freeSlotIndex == -1)
+            {
+                throw new InvalidOperationException("Maximum number of checkers reached!");
+            }
+
+            Checkers[freeSlotIndex] = checker;
         }
 
         // TODO:
         public void PrintWinner(Player player)
         {
-
+            throw new NotImplementedException();
         }
 
         // TODO:
         public void PrintDraw()
         {
-
+            throw new NotImplementedException();
         }
 
         public void AppendMove(Move move)
