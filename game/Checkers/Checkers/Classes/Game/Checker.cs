@@ -14,6 +14,7 @@ namespace Checkers.Classes.Game
         public CheckerType Type { get; private set; } = CheckerType.Regular;
         public bool Killed { get; private set; } = false;
         public Game Game { get; private set; }
+        public bool IsAbleToKill { get; private set; }
 
         public Checker(Coordinate coordinate, Player player, Game game)
         {
@@ -91,6 +92,7 @@ namespace Checkers.Classes.Game
                                 {
                                     canTake = true;
                                     availableMoves.Add(new Coordinate(nextX, nextY));
+                                    IsAbleToKill = true;
                                     newX = nextX;
                                     newY = nextY;
                                 }
@@ -108,6 +110,8 @@ namespace Checkers.Classes.Game
             }
 
             if (availableMoves.Count <= 0)
+            {
+                IsAbleToKill = false;
                 foreach (int xDirection in directions)
                 {
                     foreach (int yDirection in directions)
@@ -132,6 +136,7 @@ namespace Checkers.Classes.Game
                         }
                     }
                 }
+            }
 
             return availableMoves;
         }
@@ -160,12 +165,14 @@ namespace Checkers.Classes.Game
                         Game.GetCheckerByCoordinate(coordinateToJump) == null)
                     {
                         availableMoves.Add(coordinateToJump);
+                        IsAbleToKill = true;
                     }
                 }
             }
 
             if (availableMoves.Count <= 0)
             {
+                IsAbleToKill = false;
                 if (Coordinate.ExistingCoordinate(Coordinate.X + 1, Coordinate.Y + yDelt))
                 {
                     Coordinate coordinate = new Coordinate(Coordinate.X + 1, Coordinate.Y + yDelt);

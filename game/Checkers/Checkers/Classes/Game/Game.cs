@@ -33,6 +33,9 @@ namespace Checkers.Classes.Game
             Move move1 = new Move(CurrentPlayer.SelectedChecker, new Coordinate(4, 3), Checkers);
             CurrentPlayer.MakeMove(move1);
             AppendMove(move1);
+            if (CurrentPlayerContinuing(move1)) { 
+                Console.WriteLine("");
+            }
             CurrentPlayer.EndMove();
 
             CurrentPlayer.SelectChecker(Checkers[13]);
@@ -168,5 +171,9 @@ namespace Checkers.Classes.Game
             return null;
         }
 
+        private bool CurrentPlayerContinuing(Move move)
+        {
+            return move.KilledCheckers.Count > 0 && CurrentPlayer.SelectedChecker.IsAbleToKill;
+        }
     }
 }
