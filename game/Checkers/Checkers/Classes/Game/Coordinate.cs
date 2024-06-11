@@ -13,10 +13,8 @@ namespace Checkers.Classes.Game
 
         public Coordinate(int x, int y)
         {
-            if (x < 0 || x > 7 || y < 0 || y > 7)
-            {
+            if (!Coordinate.ExistingCoordinate(x, y))
                 throw new ArgumentOutOfRangeException("Invalid coordinate values");
-            }
 
             X = x;
             Y = y;
@@ -27,6 +25,12 @@ namespace Checkers.Classes.Game
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
             return X == other.X && Y == other.Y;
+        }
+
+        public static bool ExistingCoordinate(int x, int y)
+        {
+            if (x < 0 || x > 7 || y < 0 || y > 7) return false;
+            return true;
         }
     }
 }

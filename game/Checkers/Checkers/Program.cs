@@ -26,11 +26,31 @@ namespace Checkers
         static void Main(string[] args)
         {
             Game game = new Game();
-            //Console.WriteLine(game.B)
-            for (int i = 0; i < game.Checkers.Length; i++)
+           
+            //for (int i = 0; i < game.Checkers.Length; i++)
+            //{
+            //    Console.WriteLine($"{game.Checkers[i].Coordinate.X} {game.Checkers[i].Coordinate.Y}");
+            //}
+            //for (int i = 0; i < game.Checkers.Length; i++) {
+            //Console.WriteLine($"{game.Checkers[i]}");
+            //}
+            //Console.WriteLine($"{game.GetCheckerByCoordinate(new Coordinate(6, 2)).Coordinate.X} {game.GetCheckerByCoordinate(new Coordinate(6, 2)).Coordinate.Y}");
+
+            Console.WriteLine($"{game.Checkers[8].Coordinate.X} {game.Checkers[8].Coordinate.Y}");
+            game.Checkers[8].MakeLady();
+            game.Checkers[14].Move(new Coordinate(3, 4));
+            Console.WriteLine(game.Checkers[8].AvailableMoves(game).Count);
+            for (int i = 0; i < game.Checkers[8].AvailableMoves(game).Count; i++)
             {
-                Console.WriteLine($"{game.Checkers[i].Coordinate.X} {game.Checkers[i].Coordinate.Y}");
+                Console.WriteLine($"{game.Checkers[8].AvailableMoves(game)[i].X} {game.Checkers[8].AvailableMoves(game)[i].Y}");
             }
+
+            //Console.WriteLine(game.Board[game.Board.Length - 1].X);
+            //Console.WriteLine(game.B)
+            //for (int i = 0; i < game.Checkers.Length; i++)
+            //{
+            //    Console.WriteLine($"{game.Checkers[i].Coordinate.X} {game.Checkers[i].Coordinate.Y}");
+            //}
         }
     }
 }

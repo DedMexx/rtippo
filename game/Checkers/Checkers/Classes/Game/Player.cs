@@ -27,15 +27,14 @@ namespace Checkers.Classes.Game
         public void MakeMove(Move move) 
         {
             if (move == null)
-            {
                 throw new ArgumentNullException(nameof(move), "Move cannot be null!");
-            }
 
             if (SelectedChecker != move.Checker)
-            {
                 throw new InvalidOperationException("Selected checker does not match the move's checker!");
-            }
-            // TODO: Move valid check
+
+            if (!move.IsValid())
+                throw new InvalidOperationException("This movement is invalid!");
+
             move.ApplyMove();
         }
 

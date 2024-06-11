@@ -34,7 +34,7 @@ namespace Checkers.Classes.Game
             }
             Player player;
             bool isBlackPlayer = Players[0] != null;
-            int offset = isBlackPlayer ? 5 * 64 / 8 + 1 : 0;
+            int offset = isBlackPlayer ? 40 : 0;
 
             player = new Player(name, isBlackPlayer ? Enums.SideType.Black : Enums.SideType.White);
 
@@ -42,13 +42,14 @@ namespace Checkers.Classes.Game
 
             for (int i = 0; i < 12; i++)
             {
-                int coordinageId = i * 2;
+                int coordinageId = i * 2 + 1;
                 coordinageId += offset;
+                if (isBlackPlayer) coordinageId--;
                 if (i >= 4 && i < 8)
                     if (isBlackPlayer)
-                        coordinageId--;
-                    else
                         coordinageId++;
+                    else
+                        coordinageId--;
                 this.AppendChecker(new Checker(Board[coordinageId], player));
             }
         }
