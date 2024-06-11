@@ -11,20 +11,25 @@ namespace Checkers.Classes.Game
     {
         public Coordinate Coordinate { get; private set; }
         public Player Player { get; private set; }
-        public CheckerType Type {  get; private set; } 
-        public bool Killed {  get; private set; }
+        public CheckerType Type { get; private set; } = CheckerType.Regular;
+        public bool Killed { get; private set; } = false;
+        public Game Game { get; private set; }
 
-        public Checker(Coordinate coordinate, Player player)
+        public Checker(Coordinate coordinate, Player player, Game game)
         {
             if (player == null)
             {
                 throw new ArgumentNullException(nameof(player), "Player cannot be null!");
             }
 
+            if (game == null)
+            {
+                throw new ArgumentNullException(nameof(game), "Game cannot be null!");
+            }
+
             Coordinate = coordinate;
             Player = player;
-            Type = CheckerType.Regular;
-            Killed = false;
+            Game = game;
         }
 
         public void MakeLady()
@@ -50,19 +55,15 @@ namespace Checkers.Classes.Game
             Coordinate = coordinate;
         }
 
-        public List<Coordinate> AvailableMoves(Game game)
+        public List<Coordinate> AvailableMoves()
         {
-            if (game == null)
-            {
-                throw new ArgumentNullException(nameof(game), "Game object cannot be null!");
-            }
             if (Killed) return new List<Coordinate>();
             if (Type == CheckerType.Regular)
-             return AvailableMovesForRegular(game);
-            return AvailableMovesForLady(game);
+             return AvailableMovesForRegular();
+            return AvailableMovesForLady();
         }
 
-        private List<Coordinate> AvailableMovesForLady(Game game)
+        private List<Coordinate> AvailableMovesForLady()
         {
             List<Coordinate> availableMoves = new List<Coordinate>();
             int[] directions = new int[] { -1, 1 };
@@ -77,7 +78,7 @@ namespace Checkers.Classes.Game
 
                     while (Coordinate.ExistingCoordinate(newX, newY))
                     {
-                        Checker checkerAtDestination = game.GetCheckerByCoordinate(new Coordinate(newX, newY));
+                        Checker checkerAtDestination = Game.GetCheckerByCoordinate(new Coordinate(newX, newY));
 
                         if (checkerAtDestination != null && !canTake)
                         {
@@ -86,7 +87,7 @@ namespace Checkers.Classes.Game
                             {
                                 int nextX = newX + xDirection;
                                 int nextY = newY + yDirection;
-                                if (Coordinate.ExistingCoordinate(nextX, nextY) && game.GetCheckerByCoordinate(new Coordinate(nextX, nextY)) == null)
+                                if (Coordinate.ExistingCoordinate(nextX, nextY) && Game.GetCheckerByCoordinate(new Coordinate(nextX, nextY)) == null)
                                 {
                                     canTake = true;
                                     availableMoves.Add(new Coordinate(nextX, nextY));
@@ -116,7 +117,7 @@ namespace Checkers.Classes.Game
 
                         while (Coordinate.ExistingCoordinate(newX, newY))
                         {
-                            Checker checkerAtDestination = game.GetCheckerByCoordinate(new Coordinate(newX, newY));
+                            Checker checkerAtDestination = Game.GetCheckerByCoordinate(new Coordinate(newX, newY));
 
                             if (checkerAtDestination == null)
                             {
@@ -135,7 +136,7 @@ namespace Checkers.Classes.Game
             return availableMoves;
         }
 
-        private List<Coordinate> AvailableMovesForRegular(Game game)
+        private List<Coordinate> AvailableMovesForRegular()
         {
             List<Coordinate> availableMoves = new List<Coordinate>();
             int[] directions = new int[] { -1, 1};
@@ -151,11 +152,11 @@ namespace Checkers.Classes.Game
                     if (!Coordinate.ExistingCoordinate(newX, newY) || !Coordinate.ExistingCoordinate(nextX, nextY))
                         continue;
                     Coordinate coordinate = new Coordinate(newX, newY);
-                    Checker checker = game.GetCheckerByCoordinate(coordinate);
+                    Checker checker = Game.GetCheckerByCoordinate(coordinate);
                     Coordinate coordinateToJump = new Coordinate(nextX, nextY);
                     if (checker != null &&
                         checker.Player != Player &&
-                        game.GetCheckerByCoordinate(coordinateToJump) == null)
+                        Game.GetCheckerByCoordinate(coordinateToJump) == null)
                     {
                         availableMoves.Add(coordinateToJump);
                     }
@@ -167,7 +168,7 @@ namespace Checkers.Classes.Game
                 if (Coordinate.ExistingCoordinate(Coordinate.X + 1, Coordinate.Y + yDelt))
                 {
                     Coordinate coordinate = new Coordinate(Coordinate.X + 1, Coordinate.Y + yDelt);
-                    if (game.GetCheckerByCoordinate(coordinate) == null)
+                    if (Game.GetCheckerByCoordinate(coordinate) == null)
                     {
                         availableMoves.Add(coordinate);
                     }
@@ -175,7 +176,7 @@ namespace Checkers.Classes.Game
                 if (Coordinate.ExistingCoordinate(Coordinate.X - 1, Coordinate.Y + yDelt))
                 {
                     Coordinate coordinate = new Coordinate(Coordinate.X - 1, Coordinate.Y + yDelt);
-                    if (game.GetCheckerByCoordinate(coordinate) == null)
+                    if (Game.GetCheckerByCoordinate(coordinate) == null)
                     {
                         availableMoves.Add(coordinate);
                     }

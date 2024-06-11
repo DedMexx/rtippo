@@ -20,10 +20,40 @@ namespace Checkers.Classes.Game
         // TODO: Game logic
         public Game() 
         { 
-           this.GenerateBoard();
-           this.CreatePlayer("Роман");
-           this.CreatePlayer("Иван");
+            GenerateBoard();
+            CreatePlayer("Роман");
+            CreatePlayer("Иван");
 
+            CurrentPlayer = Players[0];
+            CurrentPlayer.SelectChecker(Checkers[10]);
+            for (int i = 0; i < CurrentPlayer.SelectedChecker.AvailableMoves().Count; i++)
+            {
+                Console.WriteLine($"{CurrentPlayer.SelectedChecker.AvailableMoves()[i].X} {CurrentPlayer.SelectedChecker.AvailableMoves()[i].Y}");
+            }
+            Move move1 = new Move(CurrentPlayer.SelectedChecker, new Coordinate(4, 3), Checkers);
+            CurrentPlayer.MakeMove(move1);
+            AppendMove(move1);
+
+            CurrentPlayer = Players[1];
+            CurrentPlayer.SelectChecker(Checkers[13]);
+            Move move2 = new Move(CurrentPlayer.SelectedChecker, new Coordinate(3, 4), Checkers);
+            CurrentPlayer.MakeMove(move2);
+            AppendMove(move2);
+
+            CurrentPlayer = Players[0];
+            CurrentPlayer.SelectChecker(Checkers[10]);
+            Move move3 = new Move(CurrentPlayer.SelectedChecker, CurrentPlayer.SelectedChecker.AvailableMoves()[0], Checkers);
+            CurrentPlayer.MakeMove(move3);
+            AppendMove(move3);
+
+            Console.WriteLine(Checkers[13].Killed);
+            //for (int i = 0; i < CurrentPlayer.SelectedChecker.AvailableMoves(this).Count; i++)
+            //{
+            //    Console.WriteLine($"{CurrentPlayer.SelectedChecker.AvailableMoves(this)[i].X} {CurrentPlayer.SelectedChecker.AvailableMoves(this)[i].Y}");
+            //}
+            //Console.WriteLine($"{CurrentPlayer.SelectedChecker.AvailableMoves(this)}");
+            //Move move3 = new Move(CurrentPlayer.SelectedChecker, new Coordinate(6, 6), Checkers);
+            //CurrentPlayer.MakeMove(move1);
 
         }
 
@@ -38,7 +68,7 @@ namespace Checkers.Classes.Game
 
             player = new Player(name, isBlackPlayer ? Enums.SideType.Black : Enums.SideType.White);
 
-            this.AppendPlayer(player);
+            AppendPlayer(player);
 
             for (int i = 0; i < 12; i++)
             {
@@ -50,7 +80,7 @@ namespace Checkers.Classes.Game
                         coordinageId++;
                     else
                         coordinageId--;
-                this.AppendChecker(new Checker(Board[coordinageId], player));
+                AppendChecker(new Checker(Board[coordinageId], player, this));
             }
         }
 

@@ -10,35 +10,68 @@ namespace Checkers.Classes.Game
     {
         public Checker Checker { get; private set; }
         public Coordinate FinalCoordinate { get; private set; }
+        public Checker[] Checkers { get; private set; }
         public List<Checker> KilledCheckers { get; private set; }
 
-        public Move(Checker checker, Coordinate finalCoordinate)
+        public Move(Checker checker, Coordinate finalCoordinate, Checker[] checkers)
         {
             if (checker == null)
             {
                 throw new ArgumentNullException(nameof(checker), "Checker cannot be null!");
             }
 
+            if (checkers == null)
+            {
+                throw new ArgumentNullException(nameof(checkers), "Checkers cannot be null!");
+            }
+
             Checker = checker;
             FinalCoordinate = finalCoordinate;
+            Checkers = checkers;
         }
 
-        // TODO: Implement IsValid checking
         public bool IsValid()
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < Checker.AvailableMoves().Count; i++) 
+            {
+                if (Checker.AvailableMoves()[i].Equals(FinalCoordinate)) 
+                    return true;
+            }
+            return false;
         }
 
         public void ApplyMove()
         {
             if (!IsValid())
-            {
-                // TODO: when not valid
                 throw new InvalidOperationException("Cannot apply invalid move!");
+
+            int maxX = Math.Max(FinalCoordinate.X, Checker.Coordinate.X);
+            int minX = Math.Min(FinalCoordinate.X, Checker.Coordinate.X);
+            int maxY = Math.Max(FinalCoordinate.Y, Checker.Coordinate.Y);
+            int minY = Math.Min(FinalCoordinate.Y, Checker.Coordinate.Y);
+
+
+            for (int i = 0; i < Checkers.Length; i++)
+            {
+                if (Checkers[i].Coordinate.X < maxX && Checkers[i].Coordinate.X > minX &&
+                    Checkers[i].Coordinate.Y < maxY && Checkers[i].Coordinate.Y > minY)
+                {
+                    Checkers[i].Kill();
+                    //KilledCheckers.Add(Checkers[i]);
+                }
             }
+
             Checker.Move(FinalCoordinate);
-            // TODO: Implement appending a killed checkers
-            throw new NotImplementedException();
+
+            if (Checker.Player.Side == Enums.SideType.White && FinalCoordinate.Y == 7)
+            {
+                Checker.MakeLady();
+            }
+
+            if (Checker.Player.Side == Enums.SideType.Black && FinalCoordinate.Y == 0)
+            {
+                Checker.MakeLady();
+            }
         }
     }
 }

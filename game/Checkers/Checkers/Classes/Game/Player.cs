@@ -32,9 +32,6 @@ namespace Checkers.Classes.Game
             if (SelectedChecker != move.Checker)
                 throw new InvalidOperationException("Selected checker does not match the move's checker!");
 
-            if (!move.IsValid())
-                throw new InvalidOperationException("This movement is invalid!");
-
             move.ApplyMove();
         }
 
@@ -69,7 +66,7 @@ namespace Checkers.Classes.Game
         public bool IsAvailableToMove(Game game) {
             for (int i = 0; i < game.Checkers.Length; i++)
             {
-                if (game.Checkers[i].Player == this && game.Checkers[i].AvailableMoves(game).Count > 0)
+                if (game.Checkers[i].Player == this && game.Checkers[i].AvailableMoves().Count > 0)
                     return true;
             }
             return false;
