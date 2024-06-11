@@ -63,10 +63,17 @@
   <ItemGroup>
     <Compile Include="Classes\Game\Checker.cs" />
     <Compile Include="Classes\Game\Coordinate.cs" />
+    <Compile Include="Classes\Game\Drawer.cs" />
     <Compile Include="Classes\Game\Enums.cs" />
     <Compile Include="Classes\Game\Game.cs" />
     <Compile Include="Classes\Game\Move.cs" />
     <Compile Include="Classes\Game\Player.cs" />
+    <Compile Include="Forms\InputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InputForm.Designer.cs">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +82,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\InputForm.resx">
+      <DependentUpon>InputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -83,6 +96,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -98,12 +112,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.1.14.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
     <Analyzer Include="..\packages\xunit.analyzers.1.14.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stone_White_x2.png" />
+    <None Include="Resources\Stone_White_2_x2.png" />
+    <None Include="Resources\Stone_Black_x2.png" />
+    <None Include="Resources\Stone_Black_2_x2.png" />
+    <None Include="Resources\board_plain_05.png" />
+    <None Include="Resources\board.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

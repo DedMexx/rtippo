@@ -15,8 +15,9 @@ namespace Checkers.Classes.Game
         public bool Killed { get; private set; } = false;
         public Game Game { get; private set; }
         public bool IsAbleToKill { get; private set; }
+        public Drawer drawer;
 
-        public Checker(Coordinate coordinate, Player player, Game game)
+        public Checker(Drawer drawer, Coordinate coordinate, Player player, Game game)
         {
             if (player == null)
             {
@@ -31,6 +32,7 @@ namespace Checkers.Classes.Game
             Coordinate = coordinate;
             Player = player;
             Game = game;
+            this.drawer = drawer;
         }
 
         public void MakeLady()
@@ -44,16 +46,14 @@ namespace Checkers.Classes.Game
 
         public void Kill()
         {
-            if (Killed)
-            {
-                throw new InvalidOperationException("Checker is already killed!");
-            }
             Killed = true;
         }
 
         public void Move(Coordinate coordinate)
         {
+            drawer.DeleteChecker(this);
             Coordinate = coordinate;
+            drawer.DrawChecker(this, Game);
         }
 
         public List<Coordinate> AvailableMoves()
@@ -159,10 +159,13 @@ namespace Checkers.Classes.Game
                     Coordinate coordinate = new Coordinate(newX, newY);
                     Checker checkerDestination = Game.GetCheckerByCoordinate(coordinate);
                     Coordinate coordinateToJump = new Coordinate(nextX, nextY);
+                    var DestinationField = Game.GetCheckerByCoordinate(coordinateToJump);
+                    var isEmptyDestination = DestinationField == null;
                     if (checkerDestination != null &&
                         checkerDestination.Player != Player && 
-                        !checkerDestination.Killed &&
-                        Game.GetCheckerByCoordinate(coordinateToJump) == null)
+                        !checkerDestination.Killed && 
+                        isEmptyDestination
+                        )
                     {
                         availableMoves.Add(coordinateToJump);
                         IsAbleToKill = true;

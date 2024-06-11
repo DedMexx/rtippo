@@ -1,12 +1,6 @@
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\Checkers.exe.config
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\Checkers.exe
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\Checkers.pdb
-D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.csproj.AssemblyReference.cache
-D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.Properties.Resources.resources
-D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.csproj.GenerateResource.cache
-D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.csproj.CoreCompileInputs.cache
-D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.exe
-D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.pdb
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\xunit.abstractions.dll
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\xunit.assert.dll
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\xunit.core.dll
@@ -15,4 +9,12 @@ D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\xunit
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\xunit.assert.xml
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\xunit.core.xml
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\bin\Debug\xunit.execution.desktop.xml
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.csproj.AssemblyReference.cache
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.Forms.InputForm.resources
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.MainForm.resources
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.Properties.Resources.resources
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.csproj.GenerateResource.cache
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.csproj.CoreCompileInputs.cache
 D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.csproj.CopyComplete
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.exe
+D:\Studying\РТиППО\2_sem\repository\game\Checkers\Checkers\obj\Debug\Checkers.pdb

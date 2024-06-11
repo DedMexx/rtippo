@@ -12,8 +12,9 @@ namespace Checkers.Classes.Game
         public Coordinate FinalCoordinate { get; private set; }
         public Checker[] Checkers { get; private set; }
         public List<Checker> KilledCheckers { get; private set; } = new List<Checker>();
+        public Drawer drawer;
 
-        public Move(Checker checker, Coordinate finalCoordinate, Checker[] checkers)
+        public Move(Drawer drawer, Checker checker, Coordinate finalCoordinate, Checker[] checkers)
         {
             if (checker == null)
             {
@@ -28,13 +29,14 @@ namespace Checkers.Classes.Game
             Checker = checker;
             FinalCoordinate = finalCoordinate;
             Checkers = checkers;
+            this.drawer = drawer;
         }
 
         public bool IsValid()
         {
-            for (int i = 0; i < Checker.AvailableMoves().Count; i++) 
+            for (int i = 0; i < Checker.AvailableMoves().Count; i++)
             {
-                if (Checker.AvailableMoves()[i].Equals(FinalCoordinate)) 
+                if (Checker.AvailableMoves()[i].Equals(FinalCoordinate))
                     return true;
             }
             return false;
@@ -58,6 +60,7 @@ namespace Checkers.Classes.Game
                 {
                     KilledCheckers.Add(Checkers[i]);
                     Checkers[i].Kill();
+                    drawer.DeleteChecker(Checkers[i]);
                 }
             }
 
@@ -66,11 +69,13 @@ namespace Checkers.Classes.Game
             if (Checker.Player.Side == Enums.SideType.White && FinalCoordinate.Y == 7)
             {
                 Checker.MakeLady();
+                drawer.MakeLady(Checker);
             }
 
             if (Checker.Player.Side == Enums.SideType.Black && FinalCoordinate.Y == 0)
             {
                 Checker.MakeLady();
+                drawer.MakeLady(Checker);
             }
         }
     }

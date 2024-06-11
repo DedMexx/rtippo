@@ -117,23 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="board" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\board.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="board_plain_05" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\board_plain_05.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="checker_black" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stone_Black_x2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="checker_black_lady" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stone_Black_2_x2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="checker_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stone_White_x2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="checker_white_lady" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Stone_White_2_x2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
