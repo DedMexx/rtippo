@@ -73,5 +73,10 @@ namespace Checkers.Classes.Game
             }
             return false;
         }
+
+        public bool IsContinuingMove(Move move)
+        {
+            return move.KilledCheckers.Count > 0 && SelectedChecker.IsAbleToKill;
+        }
     }
 }
