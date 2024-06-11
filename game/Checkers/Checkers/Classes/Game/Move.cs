@@ -11,7 +11,7 @@ namespace Checkers.Classes.Game
         public Checker Checker { get; private set; }
         public Coordinate FinalCoordinate { get; private set; }
         public Checker[] Checkers { get; private set; }
-        public List<Checker> KilledCheckers { get; private set; }
+        public List<Checker> KilledCheckers { get; private set; } = new List<Checker>();
 
         public Move(Checker checker, Coordinate finalCoordinate, Checker[] checkers)
         {
@@ -56,8 +56,8 @@ namespace Checkers.Classes.Game
                 if (Checkers[i].Coordinate.X < maxX && Checkers[i].Coordinate.X > minX &&
                     Checkers[i].Coordinate.Y < maxY && Checkers[i].Coordinate.Y > minY)
                 {
+                    KilledCheckers.Add(Checkers[i]);
                     Checkers[i].Kill();
-                    //KilledCheckers.Add(Checkers[i]);
                 }
             }
 

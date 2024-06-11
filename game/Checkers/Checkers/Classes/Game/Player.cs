@@ -12,8 +12,9 @@ namespace Checkers.Classes.Game
         public string Name { get; private set; }
         public SideType Side { get; private set; }
         public Checker SelectedChecker { get; private set; }
+        public Game Game { get; private set; }
 
-        public Player(string name, SideType side)
+        public Player(string name, SideType side, Game game)
         {
             if (string.IsNullOrEmpty(name))
             {
@@ -22,6 +23,7 @@ namespace Checkers.Classes.Game
 
             Name = name;
             Side = side;
+            Game = game;
         }
 
         public void MakeMove(Move move) 
@@ -36,9 +38,9 @@ namespace Checkers.Classes.Game
         }
 
         // TODO: Giving Up
-        public void GiveUp(Game game)
+        public void GiveUp()
         {
-            game.PrintWinner(game.OppositePlayer(this));
+            Game.PrintWinner(Game.OppositePlayer(this));
         }
 
         public void SelectChecker(Checker checker) 
@@ -57,16 +59,16 @@ namespace Checkers.Classes.Game
         }
 
         // TODO: Ending Move
-        public void EndMove(Game game)
+        public void EndMove()
         {
-            game.CurrentPlayer = game.OppositePlayer(this);
+            Game.CurrentPlayer = Game.OppositePlayer(this);
         }
 
         // TODO: Move Possibility Check
-        public bool IsAvailableToMove(Game game) {
-            for (int i = 0; i < game.Checkers.Length; i++)
+        public bool IsAvailableToMove() {
+            for (int i = 0; i < Game.Checkers.Length; i++)
             {
-                if (game.Checkers[i].Player == this && game.Checkers[i].AvailableMoves().Count > 0)
+                if (Game.Checkers[i].Player == this && Game.Checkers[i].AvailableMoves().Count > 0)
                     return true;
             }
             return false;

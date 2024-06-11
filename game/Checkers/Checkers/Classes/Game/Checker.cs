@@ -80,7 +80,7 @@ namespace Checkers.Classes.Game
                     {
                         Checker checkerAtDestination = Game.GetCheckerByCoordinate(new Coordinate(newX, newY));
 
-                        if (checkerAtDestination != null && !canTake)
+                        if (checkerAtDestination != null && !canTake && !checkerAtDestination.Killed)
                         {
 
                             if (checkerAtDestination.Player != Player)
@@ -119,7 +119,7 @@ namespace Checkers.Classes.Game
                         {
                             Checker checkerAtDestination = Game.GetCheckerByCoordinate(new Coordinate(newX, newY));
 
-                            if (checkerAtDestination == null)
+                            if (checkerAtDestination == null || checkerAtDestination.Killed)
                             {
                                 availableMoves.Add(new Coordinate(newX, newY));
 
@@ -152,10 +152,11 @@ namespace Checkers.Classes.Game
                     if (!Coordinate.ExistingCoordinate(newX, newY) || !Coordinate.ExistingCoordinate(nextX, nextY))
                         continue;
                     Coordinate coordinate = new Coordinate(newX, newY);
-                    Checker checker = Game.GetCheckerByCoordinate(coordinate);
+                    Checker checkerDestination = Game.GetCheckerByCoordinate(coordinate);
                     Coordinate coordinateToJump = new Coordinate(nextX, nextY);
-                    if (checker != null &&
-                        checker.Player != Player &&
+                    if (checkerDestination != null &&
+                        checkerDestination.Player != Player && 
+                        !checkerDestination.Killed &&
                         Game.GetCheckerByCoordinate(coordinateToJump) == null)
                     {
                         availableMoves.Add(coordinateToJump);
@@ -168,7 +169,8 @@ namespace Checkers.Classes.Game
                 if (Coordinate.ExistingCoordinate(Coordinate.X + 1, Coordinate.Y + yDelt))
                 {
                     Coordinate coordinate = new Coordinate(Coordinate.X + 1, Coordinate.Y + yDelt);
-                    if (Game.GetCheckerByCoordinate(coordinate) == null)
+                    Checker checkerDestination = Game.GetCheckerByCoordinate(coordinate);
+                    if (checkerDestination == null || checkerDestination.Killed)
                     {
                         availableMoves.Add(coordinate);
                     }
@@ -176,7 +178,8 @@ namespace Checkers.Classes.Game
                 if (Coordinate.ExistingCoordinate(Coordinate.X - 1, Coordinate.Y + yDelt))
                 {
                     Coordinate coordinate = new Coordinate(Coordinate.X - 1, Coordinate.Y + yDelt);
-                    if (Game.GetCheckerByCoordinate(coordinate) == null)
+                    Checker checkerDestination = Game.GetCheckerByCoordinate(coordinate);
+                    if (checkerDestination == null || checkerDestination.Killed)
                     {
                         availableMoves.Add(coordinate);
                     }

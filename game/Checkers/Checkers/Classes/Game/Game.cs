@@ -33,20 +33,22 @@ namespace Checkers.Classes.Game
             Move move1 = new Move(CurrentPlayer.SelectedChecker, new Coordinate(4, 3), Checkers);
             CurrentPlayer.MakeMove(move1);
             AppendMove(move1);
+            CurrentPlayer.EndMove();
 
-            CurrentPlayer = Players[1];
             CurrentPlayer.SelectChecker(Checkers[13]);
             Move move2 = new Move(CurrentPlayer.SelectedChecker, new Coordinate(3, 4), Checkers);
             CurrentPlayer.MakeMove(move2);
             AppendMove(move2);
+            CurrentPlayer.EndMove();
 
-            CurrentPlayer = Players[0];
             CurrentPlayer.SelectChecker(Checkers[10]);
             Move move3 = new Move(CurrentPlayer.SelectedChecker, CurrentPlayer.SelectedChecker.AvailableMoves()[0], Checkers);
             CurrentPlayer.MakeMove(move3);
             AppendMove(move3);
+            CurrentPlayer.EndMove();
 
             Console.WriteLine(Checkers[13].Killed);
+
             //for (int i = 0; i < CurrentPlayer.SelectedChecker.AvailableMoves(this).Count; i++)
             //{
             //    Console.WriteLine($"{CurrentPlayer.SelectedChecker.AvailableMoves(this)[i].X} {CurrentPlayer.SelectedChecker.AvailableMoves(this)[i].Y}");
@@ -66,7 +68,7 @@ namespace Checkers.Classes.Game
             bool isBlackPlayer = Players[0] != null;
             int offset = isBlackPlayer ? 40 : 0;
 
-            player = new Player(name, isBlackPlayer ? Enums.SideType.Black : Enums.SideType.White);
+            player = new Player(name, isBlackPlayer ? Enums.SideType.Black : Enums.SideType.White, this);
 
             AppendPlayer(player);
 
@@ -150,7 +152,7 @@ namespace Checkers.Classes.Game
                 throw new InvalidOperationException("Current player is not set yet");
             }
 
-            int oppositeIndex = (player == Players[0]) ? 0 : 1;
+            int oppositeIndex = (player == Players[0]) ? 1 : 0;
             return Players[oppositeIndex];
         }
 
