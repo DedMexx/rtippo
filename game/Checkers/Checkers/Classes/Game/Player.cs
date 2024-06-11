@@ -39,9 +39,9 @@ namespace Checkers.Classes.Game
         }
 
         // TODO: Giving Up
-        public void GiveUp()
+        public void GiveUp(Game game)
         {
-            throw new NotImplementedException();
+            game.PrintWinner(game.OppositePlayer(this));
         }
 
         public void SelectChecker(Checker checker) 
@@ -60,14 +60,19 @@ namespace Checkers.Classes.Game
         }
 
         // TODO: Ending Move
-        public void EndMove()
+        public void EndMove(Game game)
         {
-            throw new NotImplementedException();
+            game.CurrentPlayer = game.OppositePlayer(this);
         }
 
         // TODO: Move Possibility Check
-        public bool IsAvailableToMove() {
-            throw new NotImplementedException();
+        public bool IsAvailableToMove(Game game) {
+            for (int i = 0; i < game.Checkers.Length; i++)
+            {
+                if (game.Checkers[i].Player == this && game.Checkers[i].AvailableMoves(game).Count > 0)
+                    return true;
+            }
+            return false;
         }
     }
 }

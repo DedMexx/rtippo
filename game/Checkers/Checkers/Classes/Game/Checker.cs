@@ -73,34 +73,31 @@ namespace Checkers.Classes.Game
                 {
                     int newX = Coordinate.X + xDirection;
                     int newY = Coordinate.Y + yDirection;
+                    bool canTake = false;
 
                     while (Coordinate.ExistingCoordinate(newX, newY))
                     {
                         Checker checkerAtDestination = game.GetCheckerByCoordinate(new Coordinate(newX, newY));
 
-                        if (checkerAtDestination != null && checkerAtDestination.Player != Player)
+                        if (checkerAtDestination != null && !canTake)
                         {
-                            int nextX = newX + xDirection;
-                            int nextY = newY + yDirection;
-                            if (Coordinate.ExistingCoordinate(nextX, nextY) && game.GetCheckerByCoordinate(new Coordinate(nextX, nextY)) == null)
+
+                            if (checkerAtDestination.Player != Player)
                             {
-                                availableMoves.Add(new Coordinate(nextX, nextY));
-                                newX = nextX;
-                                newY = nextY;
+                                int nextX = newX + xDirection;
+                                int nextY = newY + yDirection;
+                                if (Coordinate.ExistingCoordinate(nextX, nextY) && game.GetCheckerByCoordinate(new Coordinate(nextX, nextY)) == null)
+                                {
+                                    canTake = true;
+                                    availableMoves.Add(new Coordinate(nextX, nextY));
+                                    newX = nextX;
+                                    newY = nextY;
+                                }
+                                else
+                                    break;
                             }
                             else
-                            {
                                 break;
-                            }
-                        }
-                        else if (checkerAtDestination != null && checkerAtDestination.Player == Player)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            availableMoves.Add(new Coordinate(newX, newY));
-
                         }
 
                         newX += xDirection;
@@ -108,6 +105,32 @@ namespace Checkers.Classes.Game
                     }
                 }
             }
+
+            if (availableMoves.Count <= 0)
+                foreach (int xDirection in directions)
+                {
+                    foreach (int yDirection in directions)
+                    {
+                        int newX = Coordinate.X + xDirection;
+                        int newY = Coordinate.Y + yDirection;
+
+                        while (Coordinate.ExistingCoordinate(newX, newY))
+                        {
+                            Checker checkerAtDestination = game.GetCheckerByCoordinate(new Coordinate(newX, newY));
+
+                            if (checkerAtDestination == null)
+                            {
+                                availableMoves.Add(new Coordinate(newX, newY));
+
+                            }
+                            else
+                                break;
+
+                            newX += xDirection;
+                            newY += yDirection;
+                        }
+                    }
+                }
 
             return availableMoves;
         }

@@ -38,7 +38,8 @@ namespace Checkers
 
             Console.WriteLine($"{game.Checkers[8].Coordinate.X} {game.Checkers[8].Coordinate.Y}");
             game.Checkers[8].MakeLady();
-            game.Checkers[14].Move(new Coordinate(3, 4));
+            game.Checkers[14].Move(new Coordinate(2, 3));
+            game.Checkers[18].Move(new Coordinate(4, 5));
             Console.WriteLine(game.Checkers[8].AvailableMoves(game).Count);
             for (int i = 0; i < game.Checkers[8].AvailableMoves(game).Count; i++)
             {

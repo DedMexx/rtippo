@@ -113,14 +113,14 @@ namespace Checkers.Classes.Game
             Moves.Add(move);
         }
 
-        public Player OppositePlayer()
+        public Player OppositePlayer(Player player)
         {
-            if (CurrentPlayer == null)
+            if (player == null)
             {
                 throw new InvalidOperationException("Current player is not set yet");
             }
 
-            int oppositeIndex = (CurrentPlayer == Players[0]) ? 1 : 0;
+            int oppositeIndex = (player == Players[0]) ? 0 : 1;
             return Players[oppositeIndex];
         }
 
